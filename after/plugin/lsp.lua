@@ -1,10 +1,14 @@
 local lsp = require("lsp-zero")
+local lspconfig = require("lspconfig")
 
 lsp.preset("recommended")
 -- we put here the lsp server
 lsp.ensure_installed({
     "terraformls",
     "tflint",
+    "ansiblels",
+    "ansible-lint",
+    "yamlls",
     "pylsp",
 })
 
@@ -18,6 +22,37 @@ lsp.configure('lua-language-server', {
     }
 })
 
+--local ansible = lsp.ansiblels.setup{}
+
+lsp.configure('ansiblels',  {
+  cmd = { "ansible-language-server", "--stdio"},
+  filetypes = {
+       "yaml.ansible", "yaml"
+  },
+  settings = {
+    ansible = {
+      ansible = {
+        path = "ansible",
+        useFullyQualifiedCollectionNames = true
+      },
+      ansibleLint = {
+        enabled = true,
+        path = "ansible-lint"
+      },
+      executionEnvironment = {
+        enabled = false
+      },
+      python = {
+        interpreterPath = "python"
+      },
+      completion = {
+          provideRedirectModules = true,
+          provideModuleOptionAliases = true
+      }
+    },
+  },
+}
+)
 
 local cmp = require('cmp')
 local cmp_select = {behavior = cmp.SelectBehavior.Select}
