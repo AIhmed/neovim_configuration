@@ -1,14 +1,12 @@
 local lsp = require("lsp-zero")
-local lspconfig = require("lspconfig")
 
 lsp.preset("recommended")
+
 -- we put here the lsp server
 lsp.ensure_installed({
     "terraformls",
     "tflint",
     "ansiblels",
-    "ansible-lint",
-    "yamlls",
     "pylsp",
 })
 
@@ -23,6 +21,7 @@ lsp.configure('lua-language-server', {
 })
 
 --local ansible = lsp.ansiblels.setup{}
+
 
 lsp.configure('ansiblels',  {
   cmd = { "ansible-language-server", "--stdio"},
@@ -43,7 +42,7 @@ lsp.configure('ansiblels',  {
         enabled = false
       },
       python = {
-        interpreterPath = "python"
+        interpreterPath = "python3"
       },
       completion = {
           provideRedirectModules = true,
@@ -53,6 +52,7 @@ lsp.configure('ansiblels',  {
   },
 }
 )
+
 
 local cmp = require('cmp')
 local cmp_select = {behavior = cmp.SelectBehavior.Select}
@@ -76,13 +76,13 @@ lsp.on_attach(function(client, bufnr)
 
   vim.keymap.set("n", "gd", function() vim.lsp.buf.definition() end, opts)
   vim.keymap.set("n", "K", function() vim.lsp.buf.hover() end, opts)
-  vim.keymap.set("n", "<leader>vws", function() vim.lsp.buf.workspace_symbol() end, opts)
-  vim.keymap.set("n", "<leader>vd", function() vim.diagnostic.open_float() end, opts)
+  vim.keymap.set("n", "<leader>ws", function() vim.lsp.buf.workspace_symbol() end, opts)
+  vim.keymap.set("n", "<leader>D", function() vim.diagnostic.open_float() end, opts)
   vim.keymap.set("n", "gn", function() vim.diagnostic.goto_next() end, opts)
   vim.keymap.set("n", "gp", function() vim.diagnostic.goto_prev() end, opts)
-  vim.keymap.set("n", "<leader>vca", function() vim.lsp.buf.code_action() end, opts)
-  vim.keymap.set("n", "<leader>vrr", function() vim.lsp.buf.references() end, opts)
-  vim.keymap.set("n", "<leader>vrn", function() vim.lsp.buf.rename() end, opts)
+  vim.keymap.set("n", "<leader>ca", function() vim.lsp.buf.code_action() end, opts)
+  vim.keymap.set("n", "<leader>rf", function() vim.lsp.buf.references() end, opts)
+  vim.keymap.set("n", "<leader>rn", function() vim.lsp.buf.rename() end, opts)
   vim.keymap.set("i", "<C-h>", function() vim.lsp.buf.signature_help() end, opts)
 end)
 
