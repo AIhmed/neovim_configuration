@@ -1,1 +1,1 @@
-require("swe_infra")
+require("infra")
