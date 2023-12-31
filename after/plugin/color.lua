@@ -1,9 +1,7 @@
-local color = "kanagawa-dragon"
+local color = "kanagawa"
 
-function colorMyPencils(color)
+function useColorScheme(color)
 	vim.cmd.colorscheme(color)
-	vim.api.nvim_set_hl(0, "Normal", { bg = "none"} )
-	vim.api.nvim_set_hl(0, "NormalFloat", { bg = "none"} )
 end
 
-colorMyPencils(color)
+useColorScheme(color)
