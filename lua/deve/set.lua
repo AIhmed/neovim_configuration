@@ -22,5 +22,7 @@ vim.opt.incsearch = true
 
 vim.opt.scrolloff = 8
 vim.opt.colorcolumn = "100"
+vim.opt.background = ""
+vim.o.termguicolors = true
 
 vim.api.nvim_set_option('clipboard', 'unnamedplus')
