@@ -8,6 +8,7 @@ return require('packer').startup(function(use)
     -- color schemes 
     use 'folke/tokyonight.nvim'
     use({ 'rose-pine/neovim', as = 'rose-pine' })
+	-- install telescope
     use "rebelot/kanagawa.nvim"
     use { "ellisonleao/gruvbox.nvim" }
 
