@@ -4,6 +4,9 @@ vim.keymap.set("n", "<leader>pv", vim.cmd.Ex)
 -- move around and create tabs for files 
 vim.keymap.set("n", "<leader>T", vim.cmd.tabnew)
 vim.keymap.set("n", "<leader>tn", vim.cmd.tabn)
+vim.keymap.set("n", "<leader>tp", vim.cmd.tabprevious)
+vim.keymap.set("n", "<leader>tf", vim.cmd.tabfirst)
+vim.keymap.set("n", "<leader>tl", vim.cmd.tablast)
 
 -- tiling and spliting the screen
 vim.keymap.set("n", "<leader>ve", vim.cmd.Vexplore)

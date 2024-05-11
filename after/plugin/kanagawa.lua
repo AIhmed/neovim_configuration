@@ -1,5 +1,5 @@
 require('kanagawa').setup({
-    compile = false,             -- enable compiling the colorscheme
+    compile = true,             -- enable compiling the colorscheme
     undercurl = true,            -- enable undercurls
     commentStyle = { italic = true },
     functionStyle = {},
@@ -8,7 +8,7 @@ require('kanagawa').setup({
     typeStyle = {},
     transparent = true,         -- do not set background color
     dimInactive = false,         -- dim inactive window `:h hl-NormalNC`
-    terminalColors = false,       -- define vim.g.terminal_color_{0,17}
+    terminalColors = true,       -- define vim.g.terminal_color_{0,17}
     colors = {                   -- add/modify theme and palette colors
         palette = {},
         theme = {
@@ -21,11 +21,15 @@ require('kanagawa').setup({
     overrides = function(colors) -- add/modify highlights
       local theme = colors.theme
         return {
+          Normal = { bg = "none" },
+          NormalFloat = { bg = "none" }, 
         }
     end,
     theme = "dragon",              -- Load "wave" theme when 'background' option is not set
     background = {               -- map the value of 'background' option to a theme
-        dark = "wave",           -- try "dragon" !
+        dark = "dragon",           -- try "dragon" !
         light = "lotus"
     },
 })
+
+vim.keymap.set("n", "<leader>ckn", vim.cmd.KanagawaCompile)
