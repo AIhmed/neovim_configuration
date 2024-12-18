@@ -25,3 +25,7 @@ vim.keymap.set("n", "<A-j>", "<C-w>j<CR>")
 -- move up and down in visual mode
 vim.keymap.set("v", "J", ":m '>+1<CR>gv=gv")
 vim.keymap.set("v", "K", ":m '<-2<CR>gv=gv")
+
+
+-- Copy to system clipboard
+vim.keymap.set("v", "gy", ":w !clip.exe<CR>")
