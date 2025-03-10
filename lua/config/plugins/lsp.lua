@@ -21,6 +21,38 @@ return {
           vim.keymap.set("i", "<C-h>", function() vim.lsp.buf.signature_help() end, opts)
         end,
       })
+            local lspconfig = require("lspconfig")
+
+      -- Emmet LSP
+      lspconfig.emmet_ls.setup({
+        filetypes = { "html", "css", "javascriptreact", "typescriptreact", "vue", "blade" }
+      })
+
+      -- Intelephense (PHP LSP)
+      lspconfig.intelephense.setup({
+        settings = {
+          intelephense = {
+            stubs = {
+              "bcmath", "bz2", "Core", "curl", "date", "dom",
+              "fileinfo", "filter", "gd", "gettext", "hash",
+              "iconv", "json", "libxml", "mbstring", "openssl",
+              "pcre", "PDO", "pdo_mysql", "Phar", "readline",
+              "Reflection", "session", "SimpleXML", "sockets",
+              "sodium", "standard", "tokenizer", "xml", "xdebug",
+              "zip", "zlib", "wordpress", "woocommerce", "acf",
+              "phpunit"
+            },
+            environment = {
+              phpVersion = "8.1"
+            }
+          }
+        }
+      })
+
+      -- Vue.js LSP (Volar)
+      lspconfig.volar.setup({
+        filetypes = { "vue", "javascript", "typescript", "javascriptreact", "typescriptreact" }
+      })
     end,
   },
   {
