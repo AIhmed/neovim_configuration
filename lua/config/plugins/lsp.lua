@@ -107,6 +107,20 @@ return {
 				cmd = { "typescript-language-server", "--stdio" },
 			})
 
+			lspconfig.gopls.setup({
+				on_attach = on_attach,
+				capabilities = capabilities,
+				settings = {
+					gopls = {
+						analyses = {
+							unusedparams = true,
+						},
+						staticcheck = true,
+						gofumpt = false,
+					},
+				},
+			})
+
 			-- Vue.js LSP (Volar)
 			lspconfig.volar.setup({
 				filetypes = { "vue", "javascript", "typescript", "javascriptreact", "typescriptreact" },
@@ -131,7 +145,9 @@ return {
 		"williamboman/mason-lspconfig.nvim", -- Bridge Mason and LSPconfig
 		dependencies = { "neovim/nvim-lspconfig", "williamboman/mason.nvim" },
 		config = function()
-			require("mason-lspconfig").setup()
+			require("mason-lspconfig").setup({
+				ensure_installed = { "gopls", "intelephense", "ts_ls", "volar", "emmet_ls" }, -- Auto-install LSPs
+			})
 		end,
 	},
 }
