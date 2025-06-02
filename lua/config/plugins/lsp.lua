@@ -143,7 +143,7 @@ return {
         ensure_installed = { 
           "gopls", 
           "intelephense", 
-          "tsserver",  -- Changed from ts_ls to tsserver
+          "ts_ls",  -- Changed from ts_ls to tsserver
           "emmet_ls",
           "vue_ls"      -- Added volar for Vue
         },
