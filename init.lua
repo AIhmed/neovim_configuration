@@ -1,1 +1,1 @@
-require("deve")
+require("config.lazy")
