@@ -145,7 +145,8 @@ return {
           "intelephense", 
           "ts_ls",  -- Changed from ts_ls to tsserver
           "emmet_ls",
-          "vue_ls"      -- Added volar for Vue
+          "vue_ls",      -- Added volar for Vue
+
         },
         automatic_installation = true,
       })
