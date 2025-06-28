@@ -1,29 +1,19 @@
 return {
-	{
-		"rebelot/kanagawa.nvim",
-		config = function()
-			require("kanagawa").setup({
-				compile = true, -- Enable compiling the colorscheme
-				undercurl = true, -- Enable undercurls
-				commentStyle = { italic = true },
-				functionStyle = {},
-				keywordStyle = { italic = true },
-				statementStyle = { bold = true },
-				typeStyle = {},
-				transparent = true, -- Do not set background color
-				dimInactive = false, -- Dim inactive window
-				terminalColors = true, -- Define terminal colors
-				colors = { -- Add/modify theme and palette colors
-					palette = {},
-					theme = {
-						wave = {},
-						lotus = {},
-						dragon = {},
-						all = {},
-					},
-				},
-			})
-			vim.cmd("colorscheme kanagawa-dragon")
-		end,
-	},
+  {
+    "rebelot/kanagawa.nvim",
+    config = function()
+      require("kanagawa").setup({
+        -- Your existing setup options...
+        transparent = false, -- Ensure this is false
+        overrides = function(colors)
+          return {
+            Normal = { bg = colors.theme.ui.bg }, -- Force solid background
+            NormalFloat = { bg = colors.theme.ui.bg }, -- Force solid float backgrounds
+            FloatBorder = { bg = colors.theme.ui.bg }, -- Optional: if you use floating windows
+          }
+        end,
+      })
+      vim.cmd("colorscheme kanagawa-dragon") -- Apply the colorscheme
+    end,
+  },
 }

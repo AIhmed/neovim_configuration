@@ -70,6 +70,18 @@ require("lazy").setup({
 	{ "hrsh7th/cmp-nvim-lsp" },
 	{ "saadparwaiz1/cmp_luasnip" },
 	{ "L3MON4D3/LuaSnip" },
+    {
+    "stevearc/oil.nvim",
+    dependencies = { "nvim-tree/nvim-web-devicons" },
+    config = function()
+      require("oil").setup()
+      -- Optional: Set keybinding to open Oil
+      vim.keymap.set("n", "-", "<CMD>Oil<CR>", { desc = "Open parent directory" })
+    end,
+  },
+
+  -- Icons (for UI)
+  { "nvim-tree/nvim-web-devicons", lazy = true },
 })
 
 require("config.set")

@@ -85,3 +85,4 @@ return {
 		vim.keymap.set("v", "ga", "<cmd>CodeCompanionAdd<cr>", { desc = "Add Code" })
 	end,
 }
+
