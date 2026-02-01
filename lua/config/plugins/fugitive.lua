@@ -9,6 +9,7 @@ return {
     vim.keymap.set('n', '<leader>gb', ':Git branch<CR>', { noremap = true, silent = true })
     vim.keymap.set('n', '<leader>gba', ':Git branch -a<CR>', { noremap = true, silent = true })
     vim.keymap.set('n', '<leader>df', ':Gvdiff<CR>', { noremap = true, silent = true })
+    vim.keymap.set('n', '<leader>gr', ':Git restore %<CR>', { noremap = true, silent = true })
   end,
   },
   {

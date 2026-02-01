@@ -1,7 +1,7 @@
 vim.g.mapleader = " "
 vim.keymap.set("n", "<leader>pv", vim.cmd.Ex)
 
--- move around and create tabs for files 
+-- move around and create tabs for files
 vim.keymap.set("n", "<leader>T", vim.cmd.tabnew)
 vim.keymap.set("n", "<leader>tn", vim.cmd.tabn)
 vim.keymap.set("n", "<leader>tp", vim.cmd.tabprevious)
@@ -26,6 +26,19 @@ vim.keymap.set("n", "<A-j>", "<C-w>j<CR>")
 vim.keymap.set("v", "J", ":m '>+1<CR>gv=gv")
 vim.keymap.set("v", "K", ":m '<-2<CR>gv=gv")
 
-
 -- Copy to system clipboard
-vim.keymap.set("v", "gy", ":w !clip.exe<CR>")
+vim.g.clipboard = {
+	name = "win32yank",
+	copy = {
+		["+"] = "win32yank.exe -i --crlf",
+		["*"] = "win32yank.exe -i --crlf",
+	},
+	paste = {
+		["+"] = "win32yank.exe -o --lf",
+		["*"] = "win32yank.exe -o --lf",
+	},
+	cache_enabled = 0,
+}
+
+-- your shortcut
+vim.keymap.set("v", "gy", '"+y', { silent = true })

@@ -16,6 +16,8 @@ return {
 					"css",
 					"htmldjango",
 					"go",
+					"hcl",
+					"terraform",
 				},
 
 				-- Install parsers synchronously
