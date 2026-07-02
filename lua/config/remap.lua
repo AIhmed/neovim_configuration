@@ -30,12 +30,12 @@ vim.keymap.set("v", "K", ":m '<-2<CR>gv=gv")
 vim.g.clipboard = {
 	name = "win32yank",
 	copy = {
-		["+"] = "win32yank.exe -i --crlf",
-		["*"] = "win32yank.exe -i --crlf",
+		["+"] = vim.fn.expand("~/.local/bin/win32yank.exe") .. " -i --crlf",
+		["*"] = vim.fn.expand("~/.local/bin/win32yank.exe") .. " -i --crlf",
 	},
 	paste = {
-		["+"] = "win32yank.exe -o --lf",
-		["*"] = "win32yank.exe -o --lf",
+		["+"] = vim.fn.expand("~/.local/bin/win32yank.exe") .. " -o --lf",
+		["*"] = vim.fn.expand("~/.local/bin/win32yank.exe") .. " -o --lf",
 	},
 	cache_enabled = 0,
 }

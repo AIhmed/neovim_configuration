@@ -1,7 +1,11 @@
 return {
   {
     'nvim-telescope/telescope.nvim',
-    dependencies = { 'nvim-lua/plenary.nvim' },
+    version = '0.1.2',
+    dependencies = {
+      'nvim-lua/plenary.nvim',
+      'nvim-tree/nvim-web-devicons',
+    },
     config = function()
       local builtin = require("telescope.builtin")
       local keymap = vim.keymap.set

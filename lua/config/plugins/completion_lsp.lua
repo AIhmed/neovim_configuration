@@ -37,20 +37,4 @@ return {
       }
     end,
   },
-  {
-    'neovim/nvim-lspconfig', -- LSP Config
-    dependencies = { 'hrsh7th/cmp-nvim-lsp' },
-    config = function()
-      local lspconfig = require('lspconfig')
-      local capabilities = require('cmp_nvim_lsp').default_capabilities()
-
-      local servers = { 'intelephense', 'volar', 'ts_ls', 'emmet_ls', 'stimulus_ls' }
-      for _, lsp in ipairs(servers) do
-        lspconfig[lsp].setup {
-          -- Customize `on_attach` if needed
-          capabilities = capabilities,
-        }
-      end
-    end,
-  },
 }

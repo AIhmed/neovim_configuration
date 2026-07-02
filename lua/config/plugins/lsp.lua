@@ -1,6 +1,7 @@
 return {
 	{
 		"neovim/nvim-lspconfig",
+		dependencies = { "hrsh7th/cmp-nvim-lsp" },
 		config = function()
 			-- Define common capabilities with LSP enhancements
 			local capabilities = vim.lsp.protocol.make_client_capabilities()
@@ -27,23 +28,12 @@ return {
 				keymap("n", "<leader>rf", vim.lsp.buf.references, opts)
 				keymap("n", "<leader>rn", vim.lsp.buf.rename, opts)
 				keymap("i", "<C-h>", vim.lsp.buf.signature_help, opts)
-
-				-- Format on save if the server supports it
-				if client.supports_method("textDocument/formatting") then
-					vim.api.nvim_create_autocmd("BufWritePre", {
-						group = vim.api.nvim_create_augroup("LspFormatting", { clear = true }),
-						buffer = bufnr,
-						callback = function()
-							vim.lsp.buf.format({ async = false })
-						end,
-					})
-				end
 			end
 
-			local lspconfig = require("lspconfig")
+			-- Use vim.lsp.config() (nvim 0.11+); nvim-lspconfig provides defaults via lsp/*.lua
 
 			-- Emmet LSP (improved config)
-			lspconfig.emmet_ls.setup({
+			vim.lsp.config("emmet_ls", {
 				capabilities = capabilities,
 				on_attach = on_attach,
 				filetypes = {
@@ -58,7 +48,7 @@ return {
 			})
 
 			-- PHP (Intelephense)
-			lspconfig.intelephense.setup({
+			vim.lsp.config("intelephense", {
 				capabilities = capabilities,
 				on_attach = on_attach,
 				settings = {
@@ -105,9 +95,13 @@ return {
 					},
 				},
 			})
+			vim.lsp.config("basedpyright", {
+				capabilities = capabilities,
+				on_attach = on_attach,
+			})
 
-			-- TypeScript (using tsserver with improved config)
-			lspconfig.ts_ls.setup({
+			-- TypeScript (ts_ls with improved config)
+			vim.lsp.config("ts_ls", {
 				capabilities = capabilities,
 				on_attach = on_attach,
 				filetypes = {
@@ -115,9 +109,9 @@ return {
 					"typescript",
 					"javascriptreact",
 					"typescriptreact",
-					"vue", -- Important for Vue SFC support
+					"vue",
 				},
-				root_dir = lspconfig.util.root_pattern("package.json", "tsconfig.json", "jsconfig.json", ".git"),
+				root_markers = { "package.json", "tsconfig.json", "jsconfig.json", ".git" },
 				init_options = {
 					preferences = {
 						importModuleSpecifierPreference = "relative",
@@ -127,7 +121,7 @@ return {
 			})
 
 			-- Go (gopls)
-			lspconfig.gopls.setup({
+			vim.lsp.config("gopls", {
 				capabilities = capabilities,
 				on_attach = on_attach,
 				settings = {
@@ -139,11 +133,22 @@ return {
 				},
 			})
 
-			lspconfig.terraformls.setup({
+			vim.lsp.config("volar", {
+				capabilities = capabilities,
+				on_attach = on_attach,
+			})
+
+			vim.lsp.config("stimulus_ls", {
+				capabilities = capabilities,
+				on_attach = on_attach,
+			})
+
+			-- Terraform
+			vim.lsp.config("terraformls", {
 				capabilities = capabilities,
 				on_attach = on_attach,
 				filetypes = { "terraform", "tf" },
-				root_dir = lspconfig.util.root_pattern(".terraform", ".git"),
+				root_markers = { ".terraform", ".git" },
 			})
 		end,
 	},
@@ -168,9 +173,12 @@ return {
 			require("mason-lspconfig").setup({
 				ensure_installed = {
 					"intelephense",
-					"ts_ls", -- Changed from ts_ls to tsserver
+					"ts_ls",
 					"emmet_ls",
 					"terraformls",
+					"basedpyright",
+					"volar",
+					"stimulus_ls",
 				},
 				automatic_installation = true,
 			})
