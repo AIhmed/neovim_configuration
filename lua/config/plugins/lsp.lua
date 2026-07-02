@@ -27,7 +27,8 @@ return {
 				keymap("n", "<leader>ca", vim.lsp.buf.code_action, opts)
 				keymap("n", "<leader>rf", vim.lsp.buf.references, opts)
 				keymap("n", "<leader>rn", vim.lsp.buf.rename, opts)
-				keymap("i", "<C-h>", vim.lsp.buf.signature_help, opts)
+				-- <C-k> avoids macOS insert-mode <C-h> backspace conflict
+				keymap("i", "<C-k>", vim.lsp.buf.signature_help, opts)
 			end
 
 			-- Use vim.lsp.config() (nvim 0.11+); nvim-lspconfig provides defaults via lsp/*.lua

@@ -16,29 +16,16 @@ vim.keymap.set("n", "<leader>le", ":Lexplore <CR>:vertical resize 20<CR>")
 vim.keymap.set("n", "<leader>se", vim.cmd.Sexplore)
 vim.keymap.set("n", "<leader>re", vim.cmd.Rexplore)
 
--- switch between netrw windows
-vim.keymap.set("n", "<A-h>", "<C-w>h<CR>")
-vim.keymap.set("n", "<A-l>", "<C-w>l<CR>")
-vim.keymap.set("n", "<A-k>", "<C-w>k<CR>")
-vim.keymap.set("n", "<A-j>", "<C-w>j<CR>")
+-- Window navigation: Ctrl+hjkl in normal mode (Option+hjkl is unreliable on macOS terminals)
+vim.keymap.set("n", "<C-h>", "<C-w>h", { desc = "Window left" })
+vim.keymap.set("n", "<C-j>", "<C-w>j", { desc = "Window down" })
+vim.keymap.set("n", "<C-k>", "<C-w>k", { desc = "Window up" })
+vim.keymap.set("n", "<C-l>", "<C-w>l", { desc = "Window right" })
 
 -- move up and down in visual mode
 vim.keymap.set("v", "J", ":m '>+1<CR>gv=gv")
 vim.keymap.set("v", "K", ":m '<-2<CR>gv=gv")
 
--- Copy to system clipboard
-vim.g.clipboard = {
-	name = "win32yank",
-	copy = {
-		["+"] = vim.fn.expand("~/.local/bin/win32yank.exe") .. " -i --crlf",
-		["*"] = vim.fn.expand("~/.local/bin/win32yank.exe") .. " -i --crlf",
-	},
-	paste = {
-		["+"] = vim.fn.expand("~/.local/bin/win32yank.exe") .. " -o --lf",
-		["*"] = vim.fn.expand("~/.local/bin/win32yank.exe") .. " -o --lf",
-	},
-	cache_enabled = 0,
-}
-
--- your shortcut
-vim.keymap.set("v", "gy", '"+y', { silent = true })
+-- macOS uses the system clipboard via vim.opt.clipboard in set.lua
+-- gy still forces an explicit copy to the + register when needed
+vim.keymap.set("v", "gy", '"+y', { silent = true, desc = "Yank to system clipboard" })

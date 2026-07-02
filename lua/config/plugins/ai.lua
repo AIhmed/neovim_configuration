@@ -21,7 +21,8 @@ return {
 						send = {
 							modes = {
 								n = { "<CR>" },
-								i = { "<C-s>" },
+								-- <C-CR> avoids macOS terminal flow-control freeze on Ctrl+S
+								i = { "<C-CR>" },
 							},
 						},
 						close = {

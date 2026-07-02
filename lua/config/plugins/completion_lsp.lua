@@ -14,7 +14,8 @@ return {
       local cmp_mappings = cmp.mapping.preset.insert({
         ['<C-p>'] = cmp.mapping.select_prev_item(cmp_select),
         ['<C-n>'] = cmp.mapping.select_next_item(cmp_select),
-        ["<C-Space>"] = cmp.mapping.complete(),
+        -- <C-e> avoids macOS Ctrl+Space IME conflict
+        ['<C-e>'] = cmp.mapping.complete(),
         ['<CR>'] = cmp.mapping.confirm {
           behavior = cmp.ConfirmBehavior.Replace,
           select = true,
